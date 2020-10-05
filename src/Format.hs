@@ -8,14 +8,11 @@ module Format (
 import Prelude hiding (readFile, lines)
 import qualified Prelude
 import Control.Monad.Reader (MonadReader, runReader, ask)
-import qualified Data.ByteString.Lazy as Lazy
 import Data.Int (Int32)
 import Data.List (intercalate)
-import Data.Word (Word8)
 
 import Opcode (OpArgs(..), OpCode(..))
-import Parse (parseHeader, parseBody)
-import Types (Assembly(..), Header(..), Instruction(..), Function(..), Upvalue(..), TValue(..), LuaInteger(..), LuaNumber(..), DebugInfo(..))
+import Types (Header(..), Instruction(..), Function(..), Upvalue(..), TValue(..), DebugInfo(..))
 
 -- TODO: use `Text` instead of `String`
 
@@ -89,4 +86,4 @@ rk n = do
   consts <- ask
   return $ case n of
             n' | n' >= kconst -> show $ consts !! fromIntegral (n' - kconst)
-            otherwise         -> "R(" <> show n <> ")"
+            n' | otherwise    -> "R(" <> show n' <> ")"
