@@ -1,0 +1,67 @@
+name:                regolith
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/githubuser/regolith#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2019 Author name here
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  ghc-options:         -Wall -Werror
+  exposed-modules:     Format,
+                       Lib,
+                       Lua,
+                       Lua.Function,
+                       Lua.Instruction,
+                       Lua.Instruction.Args,
+                       Lua.Instruction.TH,
+                       Lua.Module,
+                       Lua.Types,
+                       Lua.Version,
+                       Parse,
+                       Parse.Primitive,
+                       Opcode,
+                       Types
+  build-depends:       base >= 4.7 && < 5,
+                       binary,
+                       binary-bits,
+                       bytestring,
+                       extra,
+                       ghc,
+                       lens,
+                       optparse-applicative,
+                       mtl,
+                       template-haskell,
+                       text,
+                       transformers
+  default-language:    Haskell2010
+
+executable regolith
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , regolith
+                     , optparse-applicative
+  default-language:    Haskell2010
+
+test-suite regolith-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , regolith
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/githubuser/regolith
